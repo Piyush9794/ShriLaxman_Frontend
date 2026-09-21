@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/Dhanus_Logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Piyush Vishwakarma - Software Developer & Front-End Developer with 1.3+ years experience in React.js, Next.js, TypeScript, and MERN stack based in Lucknow, India." />
+  <meta name="keywords"
+    content="Piyush Vishwakarma, Software Developer, Frontend Developer, React Developer, Next.js, TypeScript, MERN Stack, Lucknow Developer" />
+  <meta name="author" content="Piyush Vishwakarma" />
+  <meta name="theme-color" content="#08080a" />
+
+  <!-- Script to prevent flash of wrong theme -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('dhanus-theme-mode');
+        var isDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) || (saved === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+          document.documentElement.style.colorScheme = 'dark';
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          document.documentElement.style.colorScheme = 'light';
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <title>Piyush Vishwakarma — Software & Front-End Developer</title>
+</head>
+
+<body
+  class="bg-slate-50 text-slate-900 dark:bg-[#08080a] dark:text-zinc-100 selection:bg-cyan-500/20 selection:text-cyan-900 dark:selection:text-cyan-300 font-sans antialiased overflow-x-hidden transition-colors duration-300">
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
