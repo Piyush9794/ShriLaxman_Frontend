@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Loader from "./components/Loader";
-import ScrollProgress from "./components/ScrollProgress";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import Education from "./components/Education";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import ResumeModal from "./components/ResumeModal";
+import Loader from "./Components/Loader";
+import ScrollProgress from "./Components/ScrollProgress";
+import Navbar from "./Components/navbar";
+import Hero from "./Components/Hero";
+import About from "./Components/About";
+import Skills from "./Components/Skills";
+import Experience from "./Components/Experience";
+import Projects from "./Components/Projects";
+import Education from "./Components/Education";
+import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
+import ResumeModal from "./Components/ResumeModal";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
