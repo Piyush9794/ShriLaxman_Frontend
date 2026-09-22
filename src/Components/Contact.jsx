@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import {
   Mail,
   Phone,
@@ -16,11 +17,14 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    mobile: "",
     subject: "",
     message: "",
   });
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
+  const [copiedMobile, setCopiedMobile] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -30,35 +34,249 @@ export default function Contact() {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleCopyPhone = () => {
-    navigator.clipboard.writeText(personalInfo.phone);
-    setCopiedPhone(true);
-    setTimeout(() => setCopiedPhone(false), 2000);
+  const handleCopyMobile = () => {
+    navigator.clipboard.writeText(personalInfo.mobile);
+    setCopiedMobile(true);
+    setTimeout(() => setCopiedMobile(false), 2000);
   };
 
   const validate = () => {
     const errs = {};
-    if (!formData.name.trim()) errs.name = "Name is required";
+
+    // Name
+    if (!formData.name.trim()) {
+      errs.name = "Name is required";
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
+      errs.name = "Name can contain only letters";
+    }
+
+    // Email
     if (!formData.email.trim()) {
       errs.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errs.email = "Please enter a valid email";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errs.email = "Please enter a valid email address";
     }
-    if (!formData.subject.trim()) errs.subject = "Subject is required";
-    if (!formData.message.trim()) errs.message = "Message cannot be empty";
+
+    // Mobile
+    if (!formData.mobile.trim()) {
+      errs.mobile = "Mobile number is required";
+    } else if (!/^[6-9]\d{9}$/.test(formData.mobile)) {
+      errs.mobile = "Enter a valid 10-digit Indian mobile number";
+    }
+
+    // Subject
+    if (!formData.subject.trim()) {
+      errs.subject = "Subject is required";
+    } else if (formData.subject.trim().length < 3) {
+      errs.subject = "Subject must be at least 3 characters";
+    }
+
+    // Message
+    if (!formData.message.trim()) {
+      errs.message = "Message cannot be empty";
+    } else if (formData.message.trim().length < 10) {
+      errs.message = "Message must be at least 10 characters";
+    }
+
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e) => {
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   // Submit click par validation
+  //   const isValid = validate();
+
+  //   if (!isValid) {
+  //     return;
+  //   }
+
+  //   // Prevent multiple submissions
+  //   if (isSubmitting) return;
+
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     const API_URL =
+  //       import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+  //     const response = await fetch(`${API_URL}/api/contact`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         name: formData.name.trim(),
+  //         email: formData.email.trim(),
+  //         mobile: formData.mobile.trim(),
+  //         subject: formData.subject.trim(),
+  //         message: formData.message.trim(),
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (!response.ok || !data.success) {
+  //       throw new Error(data.message || "Failed to submit message");
+  //     }
+
+  //     // Success
+  //     setSubmitted(true);
+  //     setErrors({});
+
+  //     setFormData({
+  //       name: "",
+  //       email: "",
+  //       mobile: "",
+  //       subject: "",
+  //       message: "",
+  //     });
+  //   } catch (error) {
+  //     console.error("Submission error:", error);
+
+  //     alert(
+  //       error.message ||
+  //       "Unable to reach the server. Please try again later."
+  //     );
+  //   } finally {
+  //     // Response/error dono cases mein button enable hoga
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+
+    return `${minutes}:${secs.toString().padStart(2, "0")}`;
+  };
+
+
+  const showCooldownToast = (initialSeconds = 120) => {
+    let remaining = initialSeconds;
+
+    const toastId = toast.loading(
+      `Message received! Please wait ${formatTime(remaining)} before sending another message.`,
+      {
+        duration: Infinity,
+      }
+    );
+
+    const interval = setInterval(() => {
+      remaining--;
+
+      if (remaining <= 0) {
+        clearInterval(interval);
+
+        toast.success(
+          "You can send another message now.",
+          {
+            id: toastId,
+            duration: 5000,
+          }
+        );
+
+        return;
+      }
+
+      toast.loading(
+        `Message received! Please wait ${formatTime(remaining)} before sending another message.`,
+        {
+          id: toastId,
+          duration: Infinity,
+        }
+      );
+    }, 1000);
+  };
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
+
+    const isValid = validate();
+
+    if (!isValid) {
+      toast.error("Please fill all required fields correctly.");
+      return;
+    }
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const API_URL =
+        import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          mobile: formData.mobile.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+        }),
+      });
+
+      const data = await response.json();
+
+      // ==========================================
+      // 2 MINUTE COOLDOWN FROM BACKEND
+      // ==========================================
+      if (response.status === 429) {
+        const remainingSeconds = data.remainingSeconds || 120;
+
+        showCooldownToast(remainingSeconds);
+
+        return;
+      }
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to submit message");
+      }
+
+      // ==========================================
+      // SUCCESS
+      // ==========================================
       setSubmitted(true);
+      setErrors({});
+
+      setFormData({
+        name: "",
+        email: "",
+        mobile: "",
+        subject: "",
+        message: "",
+      });
+      // 1️⃣ Pehle success toast
+      toast.success("Your message has been sent successfully!", {
+        duration: 3000,
+      });
+      // 2️⃣ THEN: Start 2-minute countdown after success toast
       setTimeout(() => {
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      }, 500);
+        showCooldownToast(120);
+      }, 3000);
+
+    } catch (error) {
+      console.error("Submission error:", error);
+
+      toast.error(
+        error.message ||
+        "Unable to reach the server. Please try again later."
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-slate-100/40 dark:bg-zinc-950/50 border-t border-slate-200 dark:border-white/[0.04]">
@@ -146,20 +364,20 @@ export default function Contact() {
                       <Phone className="w-5 h-5" />
                     </motion.div>
                     <div>
-                      <span className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-zinc-400">Direct Phone</span>
+                      <span className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-zinc-400">Mobile Number</span>
                       <h4 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white mt-0.5">
-                        {personalInfo.formattedPhone}
+                        {personalInfo.formattedMobile}
                       </h4>
                     </div>
                   </div>
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={handleCopyPhone}
+                    onClick={handleCopyMobile}
                     className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-600 dark:text-zinc-400 hover:text-slate-950 dark:hover:text-white transition-colors cursor-pointer"
-                    title="Copy phone to clipboard"
+                    title="Copy mobile to clipboard"
                   >
-                    {copiedPhone ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                    {copiedMobile ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   </motion.button>
                 </div>
               </motion.div>
@@ -254,6 +472,61 @@ export default function Contact() {
                         />
                         {errors.email && <p className="text-xs text-red-500 dark:text-red-400 mt-1">{errors.email}</p>}
                       </div>
+                      <div>
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-zinc-400 mb-2 font-medium">
+                          Mobile Number
+                        </label>
+
+                        <input
+                          type="tel"
+                          inputMode="numeric"
+                          autoComplete="tel"
+                          maxLength={10}
+                          placeholder="9876543210"
+                          value={formData.mobile}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/\D/g, "");
+
+                            setFormData({
+                              ...formData,
+                              mobile: value,
+                            });
+
+                            // Remove error while typing valid input
+                            if (errors.mobile && /^[6-9]\d{9}$/.test(value)) {
+                              setErrors({
+                                ...errors,
+                                mobile: "",
+                              });
+                            }
+                          }}
+                          onBlur={() => {
+                            if (!formData.mobile.trim()) {
+                              setErrors({
+                                ...errors,
+                                mobile: "Mobile number is required",
+                              });
+                            } else if (!/^[6-9]\d{9}$/.test(formData.mobile)) {
+                              setErrors({
+                                ...errors,
+                                mobile: "Enter a valid 10-digit Indian mobile number",
+                              });
+                            }
+                          }}
+                          className={`w-full px-4 py-3 rounded-xl bg-white dark:bg-white/[0.03] border ${errors.mobile
+                            ? "border-red-500 focus:border-red-500"
+                            : "border-slate-300 dark:border-white/10 focus:border-cyan-500"
+                            } text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 text-sm focus:outline-none transition-colors shadow-sm`}
+                        />
+
+                        {errors.mobile && (
+                          <p className="text-xs text-red-500 dark:text-red-400 mt-1">
+                            {errors.mobile}
+                          </p>
+                        )}
+                      </div>
+
+
                     </div>
 
                     <div>
@@ -283,15 +556,51 @@ export default function Contact() {
                       />
                       {errors.message && <p className="text-xs text-red-500 dark:text-red-400 mt-1">{errors.message}</p>}
                     </div>
-
                     <motion.button
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
+                      whileTap={!isSubmitting ? { scale: 0.97 } : {}}
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-300 hover:from-cyan-300 hover:to-sky-200 text-slate-950 font-semibold text-sm transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] cursor-pointer"
+                      disabled={isSubmitting}
+                      className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl 
+    bg-gradient-to-r from-cyan-400 to-sky-300 
+    hover:from-cyan-300 hover:to-sky-200 
+    text-slate-950 font-semibold text-sm transition-all
+    shadow-[0_0_20px_rgba(56,189,248,0.3)]
+    ${isSubmitting
+                          ? "opacity-60 cursor-not-allowed"
+                          : "hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] cursor-pointer"
+                        }`}
                     >
-                      <Send className="w-4 h-4" />
-                      <span>Send Message</span>
+                      {isSubmitting ? (
+                        <>
+                          <svg
+                            className="w-4 h-4 animate-spin"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                            />
+                          </svg>
+
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          <span>Send Message</span>
+                        </>
+                      )}
                     </motion.button>
                   </form>
                 )}
