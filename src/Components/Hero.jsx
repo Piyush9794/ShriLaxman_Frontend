@@ -230,57 +230,59 @@ export default function Hero({ onOpenResume }) {
           {/* Social Quick Links */}
           <motion.div
             variants={itemVariants}
-            className="flex items-center justify-center gap-3 pt-4 border-t border-slate-200 dark:border-white/[0.06] w-full max-w-xl"
+            className="flex flex-col items-center gap-2 pt-4 border-t border-slate-200 dark:border-white/[0.06] w-full max-w-xl"
           >
-            <span className="text-xs font-mono text-slate-500 dark:text-zinc-400 mr-2">Connect:</span>
+            <span className="text-xs font-mono text-slate-500 dark:text-zinc-400">Connect:</span>
 
-            <motion.a
-              href={`mailto:${personalInfo.email}`}
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/05 text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
-              title="Send Email"
-            >
-              <Mail className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-              <span>Email</span>
-            </motion.a>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <motion.a
+                href={`mailto:${personalInfo.email}`}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/[0.05] text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
+                title="Send Email"
+              >
+                <Mail className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
+                <span>Email</span>
+              </motion.a>
 
-            <motion.a
-              href={`tel:${personalInfo.phone}`}
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/05 text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
-              title="Call"
-            >
-              <Phone className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-              <span>{personalInfo.phone}</span>
-            </motion.a>
+              <motion.a
+                href={`tel:+91${personalInfo.phone}`}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/[0.05] text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
+                title="Call"
+              >
+                <Phone className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 flex-shrink-0" />
+                <span>{personalInfo.phone}</span>
+              </motion.a>
 
-            <motion.a
-              href={personalInfo.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/05 text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
-              title="LinkedIn Profile"
-            >
-              <LinkedinIcon className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-              <span>LinkedIn</span>
-            </motion.a>
+              <motion.a
+                href={personalInfo.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/[0.05] text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
+                title="LinkedIn Profile"
+              >
+                <LinkedinIcon className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                <span>LinkedIn</span>
+              </motion.a>
 
-            <motion.a
-              href={personalInfo.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/05 text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
-              title="GitHub Profile"
-            >
-              <GithubIcon className="w-3.5 h-3.5 text-slate-700 dark:text-zinc-300" />
-              <span>GitHub</span>
-            </motion.a>
+              <motion.a
+                href={personalInfo.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-300/80 dark:border-white/[0.05] text-xs text-slate-700 dark:text-zinc-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shadow-sm"
+                title="GitHub Profile"
+              >
+                <GithubIcon className="w-3.5 h-3.5 text-slate-700 dark:text-zinc-300 flex-shrink-0" />
+                <span>GitHub</span>
+              </motion.a>
+            </div>
           </motion.div>
 
           {/* Quick Metrics Grid with hover elevation */}

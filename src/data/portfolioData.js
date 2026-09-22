@@ -1,7 +1,8 @@
 export const personalInfo = {
   name: "Piyush Vishwakarma",
   role: "Software Developer / Front-End Developer",
-  tagline: "Building responsive, modern, and high-performance web applications with React.js, Next.js, and TypeScript.",
+  tagline:
+    "Building responsive, modern, and high-performance web applications with React.js, Next.js, and TypeScript.",
   location: "Lucknow, India",
   email: "vishwakarmapiyush327@gmail.com",
   phone: "9794125123",
@@ -11,8 +12,8 @@ export const personalInfo = {
   summary:
     "Front-End Developer with 1.3 year of professional experience in modern web development. Quick learner with strong problem-solving skills, adaptable to new technologies, and passionate about building responsive and user-friendly web applications using React.js, Next.js, TypeScript, JavaScript, and the MERN stack.",
   socials: {
-    linkedin: "https://linkedin.com/in/piyush-vishwakarma", // Placeholder URL - configure when available
-    github: "https://github.com/piyushvishwakarma", // Placeholder URL - configure when available
+    linkedin: "https://www.linkedin.com/in/piyush-vishwakarma-93b971259/", // Placeholder URL - configure when available
+    github: "https://github.com/Piyush9794", // Placeholder URL - configure when available
     email: "mailto:vishwakarmapiyush327@gmail.com",
     phone: "tel:+919794125123",
   },
@@ -29,6 +30,30 @@ export const navigationLinks = [
 
 export const experienceData = [
   {
+    id: "arth-spark",
+    role: "Software Developer",
+    company: "ARTH SPARK PVT. LTD.",
+    period: "08/2026 – Present",
+    duration: "1+ Month",
+    badge: "Current",
+    location: "India",
+    skills: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "Context API",
+    ],
+    responsibilities: [
+      "Working on live projects and gaining practical experience in software development.",
+      "Developing and maintaining modern, responsive user interfaces using React.js and Next.js.",
+      "Implementing responsive and performant designs using Tailwind CSS.",
+      "Writing clean, type-safe, and maintainable code using TypeScript.",
+      "Managing application state using React Context API.",
+      "Collaborating with team members to develop, improve, and maintain application features.",
+    ],
+  },
+  {
     id: "arivani",
     role: "Software Developer",
     company: "Arivani Technology Private Limited",
@@ -36,7 +61,13 @@ export const experienceData = [
     duration: "1.3 Year",
     badge: "Current / Latest",
     location: "India",
-    skills: ["React.js", "Next.js", "Tailwind CSS", "TypeScript", "Context API"],
+    skills: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "Context API",
+    ],
     responsibilities: [
       "Working on live projects and gaining practical experience in frontend development.",
       "Developing and scaling modern user interfaces using React and Next.js.",
@@ -53,7 +84,17 @@ export const experienceData = [
     duration: "8 Months",
     badge: "Internship",
     location: "India",
-    skills: ["React.js", "JavaScript", "HTML5", "CSS3", "Bootstrap 5", "Node.js", "Express.js", "MongoDB", "MVC"],
+    skills: [
+      "React.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Bootstrap 5",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "MVC",
+    ],
     responsibilities: [
       "Developed responsive web applications using React.js, JavaScript, HTML5, CSS3, and Bootstrap 5.",
       "Built robust RESTful APIs using Node.js, Express.js, and MVC architecture.",
@@ -67,7 +108,8 @@ export const skillCategories = [
   {
     id: "frontend",
     title: "Frontend",
-    description: "Modern UI libraries, responsive styling, and fast interactive frameworks",
+    description:
+      "Modern UI libraries, responsive styling, and fast interactive frameworks",
     skills: [
       { name: "React.js", level: "Primary" },
       { name: "Next.js", level: "Primary" },
@@ -94,7 +136,8 @@ export const skillCategories = [
   {
     id: "databases",
     title: "Databases",
-    description: "Relational and document databases for persistent web applications",
+    description:
+      "Relational and document databases for persistent web applications",
     skills: [
       { name: "MongoDB", level: "Primary" },
       { name: "MySQL", level: "Experienced" },
@@ -139,17 +182,30 @@ export const skillCategories = [
 ];
 
 export const projectsData = [
-
   {
     id: "unitynivo",
-    link: "https://unitynivo.com/",   // ← URL add kiya
+    link: "https://unitynivo.com/", // ← URL add kiya
     title: "UnityNivo",
-    subtitle: "UnityNivo is a platform for employees to celebrate their birthdays with their colleagues.",
-    category: "Full Stack / Backend / DevOps",  // ← updated
+    subtitle:
+      "UnityNivo is a platform for employees to celebrate their birthdays with their colleagues.",
+    category: "Full Stack / Backend / DevOps", // ← updated
     description:
       "Built end-to-end — from designing and developing the frontend using React.js and Next.js, to architecting and implementing the backend APIs with Node.js and Express.js. Handled complete deployment and hosting on a live server, ensuring the platform is production-ready, scalable, and performant. Implemented reusable UI components, REST APIs, state management via Context API, and maintained clean, efficient code throughout the project.",
-    stack: ["React.js", "Next.js", "Node.js", "Express.js", "Bootstrap", "Context API", "Axios", "REST APIs"],
-    metrics: ["Full Stack Development", "Deployed & Hosted", "Scalable Architecture"],
+    stack: [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "Bootstrap",
+      "Context API",
+      "Axios",
+      "REST APIs",
+    ],
+    metrics: [
+      "Full Stack Development",
+      "Deployed & Hosted",
+      "Scalable Architecture",
+    ],
     colorTheme: "from-cyan-500/20 via-blue-500/10 to-transparent",
     borderGlow: "group-hover:border-cyan-500/40",
     gradientText: "from-cyan-400 to-blue-500",
@@ -162,8 +218,19 @@ export const projectsData = [
     category: "Full Stack / Frontend",
     description:
       "Developed a responsive web application using React.js, Next.js, Bootstrap, Context API, and Axios. Built reusable UI components, integrated REST APIs, managed application state using React Context API, and collaborated with the backend team to deliver scalable, high-performance frontend solutions while maintaining clean, efficient, and maintainable code to enhance the user experience.",
-    stack: ["React.js", "Next.js", "Bootstrap", "Context API", "Axios", "REST APIs"],
-    metrics: ["Scalable Frontend Architecture", "Reusable Component System", "Optimized API State"],
+    stack: [
+      "React.js",
+      "Next.js",
+      "Bootstrap",
+      "Context API",
+      "Axios",
+      "REST APIs",
+    ],
+    metrics: [
+      "Scalable Frontend Architecture",
+      "Reusable Component System",
+      "Optimized API State",
+    ],
     colorTheme: "from-cyan-500/20 via-blue-500/10 to-transparent",
     borderGlow: "group-hover:border-cyan-500/40",
     gradientText: "from-cyan-400 to-blue-500",
@@ -176,8 +243,19 @@ export const projectsData = [
     category: "Web Application",
     description:
       "Developed a comprehensive tour management website using React.js, MongoDB, HTML, and CSS. Implemented more than 15 key features to streamline trip planning and management. Optimized application performance through efficient coding practices and asynchronous data fetching to enhance the user experience.",
-    stack: ["React.js", "MongoDB", "HTML5", "CSS3", "Async Data Fetching", "JavaScript"],
-    metrics: ["15+ Key Features", "Async Data Fetching", "Trip Planning Workflow"],
+    stack: [
+      "React.js",
+      "MongoDB",
+      "HTML5",
+      "CSS3",
+      "Async Data Fetching",
+      "JavaScript",
+    ],
+    metrics: [
+      "15+ Key Features",
+      "Async Data Fetching",
+      "Trip Planning Workflow",
+    ],
     colorTheme: "from-emerald-500/20 via-teal-500/10 to-transparent",
     borderGlow: "group-hover:border-emerald-500/40",
     gradientText: "from-emerald-400 to-teal-400",
@@ -189,8 +267,19 @@ export const projectsData = [
     category: "MERN Stack",
     description:
       "Developed full-stack CRUD applications using the MERN Stack: MongoDB, Express.js, React.js, Node.js. Built responsive frontend interfaces, developed RESTful APIs, integrated MongoDB for data management, and connected the frontend with the backend to implement complete end-to-end CRUD functionality.",
-    stack: ["MongoDB", "Express.js", "React.js", "Node.js", "RESTful APIs", "MVC"],
-    metrics: ["End-to-End CRUD", "RESTful Architecture", "Full-Stack Integration"],
+    stack: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "RESTful APIs",
+      "MVC",
+    ],
+    metrics: [
+      "End-to-End CRUD",
+      "RESTful Architecture",
+      "Full-Stack Integration",
+    ],
     colorTheme: "from-purple-500/20 via-indigo-500/10 to-transparent",
     borderGlow: "group-hover:border-purple-500/40",
     gradientText: "from-purple-400 to-indigo-400",

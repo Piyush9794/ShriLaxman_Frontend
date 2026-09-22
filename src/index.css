@@ -2,6 +2,28 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ── Custom breakpoint: xs (480px) ── */
+@media (min-width: 480px) {
+  .xs\:inline { display: inline; }
+  .xs\:hidden { display: none; }
+  .xs\:flex-row { flex-direction: row; }
+  .xs\:items-center { align-items: center; }
+  .xs\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .xs\:flex-row { flex-direction: row; }
+  .xs\:items-baseline { align-items: baseline; }
+}
+
+/* ── Modal: ensure it fills full viewport height on mobile ── */
+:root {
+  --modal-height: 100svh;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --modal-height: calc(100svh - 3rem);
+  }
+}
+
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;

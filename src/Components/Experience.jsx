@@ -1,9 +1,38 @@
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
+
+
 import { Briefcase, Calendar, Building2, CheckCircle2 } from "lucide-react";
 import { experienceData } from "../data/portfolioData";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 export default function Experience() {
+
+  const timelineRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 70%", "end 30%"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 25,
+    mass: 0.5,
+  });
+
+  const indicatorTop = useTransform(
+    smoothProgress,
+    [0, 1],
+    ["0%", "100%"]
+  );
+
   return (
     <section id="experience" className="py-24 relative overflow-hidden">
       {/* Background glow */}

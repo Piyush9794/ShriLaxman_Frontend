@@ -238,8 +238,8 @@ function buildPrintHTML() {
       <span>✉ ${personalInfo.email}</span>
       <span>📞 ${personalInfo.formattedPhone}</span>
       <span>📍 ${personalInfo.location}</span>
-      <span>⬡ github.com/piyushvishwakarma</span>
-      <span>in linkedin.com/in/piyush-vishwakarma</span>
+      <span>⬡ github.com/Piyush9794</span>
+      <span>in linkedin.com/in/piyush-vishwakarma-93b971259</span>
     </div>
   </div>
 
@@ -342,7 +342,8 @@ export default function ResumeModal({ isOpen, onClose }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9999] flex items-start justify-center p-3 sm:p-6 overflow-y-auto">
+      {/* Full-screen flex container — scrollable on mobile */}
+      <div className="fixed inset-0 z-[9999] flex items-start justify-center overflow-y-auto p-0 sm:p-4 md:p-6">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -354,33 +355,40 @@ export default function ResumeModal({ isOpen, onClose }) {
 
         {/* Modal Container */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: "spring", damping: 25, stiffness: 350 }}
-          className="relative w-full max-w-3xl bg-white dark:bg-[#0f1117] border border-slate-200 dark:border-white/15 rounded-3xl shadow-2xl z-10 my-8 text-slate-900 dark:text-zinc-100 overflow-hidden"
+          className="relative w-full max-w-3xl bg-white dark:bg-[#0f1117] border-0 sm:border border-slate-200 dark:border-white/15 sm:rounded-3xl shadow-2xl z-10 my-0 sm:my-6 text-slate-900 dark:text-zinc-100 overflow-hidden flex flex-col"
+          style={{
+            minHeight: "var(--modal-height, 100svh)",
+            maxHeight: "var(--modal-height, 100svh)",
+          }}
         >
           {/* ─── Action Bar ─── */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0f1117]/95 backdrop-blur-md sticky top-0 z-20">
-            <div>
+          <div className="flex-shrink-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0f1117]/95 backdrop-blur-md z-20">
+            {/* Title */}
+            <div className="min-w-0">
               <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-700 dark:text-cyan-400 font-semibold">
                 Official Curriculum Vitae
               </span>
-              <h2 className="font-display font-bold text-xl text-slate-900 dark:text-white leading-tight">
+              <h2 className="font-display font-bold text-base sm:text-xl text-slate-900 dark:text-white leading-tight truncate">
                 {personalInfo.name}
               </h2>
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* Buttons */}
+            <div className="flex items-center gap-2 flex-shrink-0">
               {/* Download Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleDownload}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-500/10 dark:hover:bg-emerald-500/20 border border-emerald-300 dark:border-emerald-500/30 text-xs font-mono text-emerald-800 dark:text-emerald-300 transition-colors cursor-pointer"
+                className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-500/10 dark:hover:bg-emerald-500/20 border border-emerald-300 dark:border-emerald-500/30 text-[11px] sm:text-xs font-mono text-emerald-800 dark:text-emerald-300 transition-colors cursor-pointer whitespace-nowrap"
               >
-                <Download className="w-4 h-4" />
-                <span>Download PDF</span>
+                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span className="hidden xs:inline">Download</span>
+                <span className="xs:hidden">PDF</span>
               </motion.button>
 
               {/* Print Button */}
@@ -388,9 +396,9 @@ export default function ResumeModal({ isOpen, onClose }) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handlePrint}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 border border-cyan-300 dark:border-cyan-500/30 text-xs font-mono text-cyan-800 dark:text-cyan-300 transition-colors cursor-pointer"
+                className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 border border-cyan-300 dark:border-cyan-500/30 text-[11px] sm:text-xs font-mono text-cyan-800 dark:text-cyan-300 transition-colors cursor-pointer whitespace-nowrap"
               >
-                <Printer className="w-4 h-4" />
+                <Printer className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
                 <span>Print</span>
               </motion.button>
 
@@ -407,29 +415,29 @@ export default function ResumeModal({ isOpen, onClose }) {
           </div>
 
           {/* ─── Scrollable Preview ─── */}
-          <div className="max-h-[80vh] overflow-y-auto">
+          <div className="flex-1 overflow-y-auto overscroll-contain">
             {/* ── PAGE 1 PREVIEW ── */}
-            <div className="px-8 py-7">
+            <div className="px-4 sm:px-8 py-5 sm:py-7">
               {/* Header */}
               <div className="mb-4 pb-4 border-b-2 border-cyan-500">
-                <h1 className="text-2xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
                   {personalInfo.name}
                 </h1>
-                <p className="text-sm font-medium text-cyan-700 dark:text-cyan-400 mt-0.5">
+                <p className="text-xs sm:text-sm font-medium text-cyan-700 dark:text-cyan-400 mt-0.5">
                   {personalInfo.role}
                 </p>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mt-2 text-[11px] font-mono text-slate-600 dark:text-zinc-400">
-                  <span className="flex items-center gap-1"><Mail className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />{personalInfo.email}</span>
-                  <span className="flex items-center gap-1"><Phone className="w-3 h-3 text-sky-600 dark:text-sky-400" />{personalInfo.formattedPhone}</span>
-                  <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-indigo-600 dark:text-indigo-400" />{personalInfo.location}</span>
-                  <span className="flex items-center gap-1"><Globe className="w-3 h-3 text-slate-500" />github.com/piyushvishwakarma</span>
-                  <span className="flex items-center gap-1"><Globe className="w-3 h-3 text-blue-500" />linkedin.com/in/piyush-vishwakarma</span>
+                <div className="flex flex-wrap gap-x-3 sm:gap-x-5 gap-y-1.5 mt-2 text-[10px] sm:text-[11px] font-mono text-slate-600 dark:text-zinc-400">
+                  <span className="flex items-center gap-1"><Mail className="w-3 h-3 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />{personalInfo.email}</span>
+                  <span className="flex items-center gap-1"><Phone className="w-3 h-3 text-sky-600 dark:text-sky-400 flex-shrink-0" />{personalInfo.formattedPhone}</span>
+                  <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />{personalInfo.location}</span>
+                  <span className="flex items-center gap-1"><Globe className="w-3 h-3 text-slate-500 flex-shrink-0" />github.com/Piyush9794</span>
+                  <span className="flex items-center gap-1"><Globe className="w-3 h-3 text-blue-500 flex-shrink-0" />linkedin.com/in/piyush-vishwakarma-93b971259</span>
                 </div>
               </div>
 
               {/* Summary */}
               <Section title="Professional Summary">
-                <p className="text-[11.5px] text-slate-700 dark:text-zinc-300 leading-relaxed">{personalInfo.summary}</p>
+                <p className="text-[11px] sm:text-[11.5px] text-slate-700 dark:text-zinc-300 leading-relaxed">{personalInfo.summary}</p>
               </Section>
 
               {/* Experience */}
@@ -438,14 +446,14 @@ export default function ResumeModal({ isOpen, onClose }) {
                   {experienceData.map((exp) => (
                     <div key={exp.id}>
                       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-0.5">
-                        <span className="text-[12px] font-bold text-slate-900 dark:text-white">
+                        <span className="text-[11px] sm:text-[12px] font-bold text-slate-900 dark:text-white">
                           {exp.role} <span className="font-normal text-slate-600 dark:text-zinc-400">@ {exp.company}</span>
                         </span>
                         <span className="text-[10px] font-mono text-cyan-700 dark:text-cyan-300 shrink-0">{exp.period} · {exp.duration}</span>
                       </div>
                       <ul className="mt-1 space-y-0.5">
                         {exp.responsibilities.map((r, i) => (
-                          <li key={i} className="flex items-start gap-1.5 text-[10.5px] text-slate-700 dark:text-zinc-300">
+                          <li key={i} className="flex items-start gap-1.5 text-[10px] sm:text-[10.5px] text-slate-700 dark:text-zinc-300">
                             <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-1.5 shrink-0" />{r}
                           </li>
                         ))}
@@ -465,11 +473,11 @@ export default function ResumeModal({ isOpen, onClose }) {
                 <div className="space-y-3">
                   {projectsData.map((proj) => (
                     <div key={proj.id}>
-                      <div className="flex items-baseline justify-between gap-1">
-                        <span className="text-[12px] font-bold text-slate-900 dark:text-white">{proj.title}</span>
+                      <div className="flex flex-col xs:flex-row xs:items-baseline justify-between gap-1">
+                        <span className="text-[11px] sm:text-[12px] font-bold text-slate-900 dark:text-white">{proj.title}</span>
                         <span className="text-[10px] font-mono text-slate-500 dark:text-zinc-400 shrink-0">{proj.category}</span>
                       </div>
-                      <p className="text-[10.5px] text-slate-700 dark:text-zinc-300 leading-relaxed mt-0.5 line-clamp-2">{proj.description}</p>
+                      <p className="text-[10px] sm:text-[10.5px] text-slate-700 dark:text-zinc-300 leading-relaxed mt-0.5 line-clamp-2">{proj.description}</p>
                       <div className="flex flex-wrap gap-1 mt-1">
                         {proj.stack.map((st) => (
                           <span key={st} className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-cyan-50 dark:bg-cyan-500/10 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-500/20">{st}</span>
@@ -482,23 +490,23 @@ export default function ResumeModal({ isOpen, onClose }) {
             </div>
 
             {/* ── PAGE 2 PREVIEW ── */}
-            <div className="px-8 py-7 border-t-4 border-dashed border-slate-300 dark:border-white/10">
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200 dark:border-white/10">
-                <div>
+            <div className="px-4 sm:px-8 py-5 sm:py-7 border-t-4 border-dashed border-slate-300 dark:border-white/10">
+              <div className="flex flex-col xs:flex-row xs:items-center justify-between mb-4 pb-3 border-b border-slate-200 dark:border-white/10 gap-1">
+                <div className="min-w-0">
                   <span className="text-[11px] font-bold text-slate-900 dark:text-white">{personalInfo.name}</span>
                   <span className="mx-2 text-slate-400">·</span>
                   <span className="text-[10px] font-mono text-cyan-600 dark:text-cyan-400">{personalInfo.role}</span>
                 </div>
-                <span className="text-[10px] font-mono text-slate-400 dark:text-zinc-500">Page 2 / 2</span>
+                <span className="text-[10px] font-mono text-slate-400 dark:text-zinc-500 flex-shrink-0">Page 2 / 2</span>
               </div>
 
               {/* Skills */}
               <Section title="Skills & Technologies">
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 xs:grid-cols-2 gap-2">
                   {skillCategories.map((cat) => (
                     <div key={cat.id} className="p-2 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.06]">
                       <span className="text-[10px] font-bold text-slate-800 dark:text-zinc-200 block mb-0.5">{cat.title}:</span>
-                      <span className="text-[9.5px] font-mono text-slate-600 dark:text-zinc-400 leading-snug">{cat.skills.map((s) => s.name).join(" · ")}</span>
+                      <span className="text-[9px] sm:text-[9.5px] font-mono text-slate-600 dark:text-zinc-400 leading-snug">{cat.skills.map((s) => s.name).join(" · ")}</span>
                     </div>
                   ))}
                 </div>
@@ -506,13 +514,13 @@ export default function ResumeModal({ isOpen, onClose }) {
 
               {/* Education */}
               <Section title="Education" icon={<GraduationCap className="w-3.5 h-3.5" />}>
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.06]">
-                  <div>
-                    <h4 className="text-[12px] font-bold text-slate-900 dark:text-white">{educationData.degree}</h4>
-                    <p className="text-[10.5px] text-slate-600 dark:text-zinc-400 mt-0.5">{educationData.institution}, {educationData.location}</p>
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-1 p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.06]">
+                  <div className="min-w-0">
+                    <h4 className="text-[11px] sm:text-[12px] font-bold text-slate-900 dark:text-white">{educationData.degree}</h4>
+                    <p className="text-[10px] sm:text-[10.5px] text-slate-600 dark:text-zinc-400 mt-0.5">{educationData.institution}, {educationData.location}</p>
                     <ul className="mt-1.5 space-y-0.5">
                       {(educationData.highlights || []).map((h, i) => (
-                        <li key={i} className="flex items-start gap-1.5 text-[10px] text-slate-600 dark:text-zinc-400">
+                        <li key={i} className="flex items-start gap-1.5 text-[9.5px] sm:text-[10px] text-slate-600 dark:text-zinc-400">
                           <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />{h}
                         </li>
                       ))}
