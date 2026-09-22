@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUp, Mail, Phone } from "lucide-react";
+import { ArrowUp, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { personalInfo, navigationLinks } from "../data/portfolioData";
 
@@ -55,7 +55,7 @@ export default function Footer({ onOpenResume }) {
           "
         >
           {/* Brand Info */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-6 lg:col-span-4">
             <div className="mb-4 sm:mb-5">
               <motion.img
                 whileHover={{ scale: 1.05 }}
@@ -108,7 +108,7 @@ export default function Footer({ onOpenResume }) {
           </div>
 
           {/* Navigation */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-6 lg:col-span-2">
             <span
               className="
                 mb-4 block
@@ -122,9 +122,9 @@ export default function Footer({ onOpenResume }) {
 
             <div
               className="
-                grid grid-cols-2 gap-x-6 gap-y-2
+                grid grid-cols-2 gap-x-4 gap-y-2
                 text-sm
-                sm:gap-x-8
+                sm:gap-x-6
               "
             >
               {navigationLinks.map((link) => (
@@ -165,11 +165,62 @@ export default function Footer({ onOpenResume }) {
             </div>
           </div>
 
+          {/* Location Map */}
+          <div className="w-full md:col-span-6 lg:col-span-3">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <span className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-zinc-400">
+                <MapPin className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
+                <span>Location</span>
+              </span>
+              <a
+                href="https://maps.google.com/?q=26.953792018531068,80.92622438203036"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-700 hover:text-cyan-600 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors"
+                title="Open in Google Maps"
+              >
+                <span>Open Map</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+
+            {/* Fully Responsive Map Container: adapts to mobile, tablet, and desktop */}
+            <div className="relative w-full h-40 xs:h-44 sm:h-36 md:h-40 lg:h-32 xl:h-36 rounded-2xl overflow-hidden border border-slate-300/80 dark:border-white/10 shadow-sm bg-slate-200 dark:bg-zinc-900 group hover:border-cyan-500/40 dark:hover:border-cyan-400/40 transition-colors">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d237.15137344262112!2d80.92622438203036!3d26.953792018531068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1790067280394!5m2!1sen!2sin"
+                className="w-full h-full border-0 block"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Piyush Vishwakarma Location Map"
+              />
+
+              {/* Direct Touch / Click Button for Mobile Users */}
+              <a
+                href="https://maps.google.com/?q=26.953792018531068,80.92622438203036"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-2 right-2 px-2.5 py-1 rounded-lg bg-white/90 dark:bg-zinc-900/90 hover:bg-white dark:hover:bg-zinc-800 text-[10px] font-mono font-medium text-slate-800 dark:text-zinc-200 shadow-md backdrop-blur-sm border border-slate-300/70 dark:border-white/15 flex items-center gap-1 transition-all pointer-events-auto z-10"
+              >
+                <span>Navigate</span>
+                <ExternalLink className="w-2.5 h-2.5 text-cyan-600 dark:text-cyan-400" />
+              </a>
+            </div>
+
+            <div className="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-zinc-400">
+              <span className="truncate">📍 {personalInfo.location}</span>
+              <span className="hidden xs:inline text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+                ● Active
+              </span>
+            </div>
+          </div>
+
           {/* Social + Back To Top */}
           <div
             className="
               flex flex-col
-              md:col-span-3
+              md:col-span-6 lg:col-span-3
               md:items-end
             "
           >
