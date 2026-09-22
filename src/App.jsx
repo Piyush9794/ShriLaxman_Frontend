@@ -12,10 +12,12 @@ import Education from "./Components/Education";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 import ResumeModal from "./Components/ResumeModal";
+import ContactModal from "./Components/ContactModal";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // Avoid flash of scrollbar during initial load
   useEffect(() => {
@@ -23,6 +25,17 @@ export default function App() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
+    }
+  }, [isLoading]);
+
+  // Show contact modal after 3 seconds of loading
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => {
+        setIsContactModalOpen(true);
+      }, 3000);
+
+      return () => clearTimeout(timer);
     }
   }, [isLoading]);
 
@@ -71,6 +84,12 @@ export default function App() {
           <ResumeModal
             isOpen={isResumeOpen}
             onClose={() => setIsResumeOpen(false)}
+          />
+
+          {/* Contact Inquiry Modal */}
+          <ContactModal
+            isOpen={isContactModalOpen}
+            onClose={() => setIsContactModalOpen(false)}
           />
         </motion.div>
       )}
