@@ -65,6 +65,7 @@ export default function Loader({ onComplete }) {
           className="relative flex items-center justify-center"
         >
           <img
+            //src="/Hello (apple).svg"
             src="/Hello (apple).svg"
             alt="Hello"
             className="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] max-w-[85vw] h-auto object-contain brightness-0 dark:brightness-0 dark:invert drop-shadow-[0_0_15px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]"

@@ -1,4 +1,6 @@
+// Dhanus App - Updated 2026-10-11 00:40
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Loader from "./Components/Loader";
 import ScrollProgress from "./Components/ScrollProgress";
@@ -8,11 +10,13 @@ import About from "./Components/About";
 import Skills from "./Components/Skills";
 import Experience from "./Components/Experience";
 import Projects from "./Components/Projects";
+// import Ecommerce from "./Components/Ecommerce";
 import Education from "./Components/Education";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 import ResumeModal from "./Components/ResumeModal";
 import ContactModal from "./Components/ContactModal";
+import StoreRoutes from "./ecommerce/routes/StoreRoutes";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -52,46 +56,58 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Main Website Structure */}
+      {/* Router View Configuration */}
       {!isLoading && (
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col min-h-screen relative"
-        >
-          {/* Scroll Progress Bar */}
-          <ScrollProgress />
+        <Routes>
+          {/* Main Portfolio Home Page */}
+          <Route
+            path="/"
+            element={
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-col min-h-screen relative"
+              >
+                <ScrollProgress />
+                <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 
-          {/* Navigation */}
-          <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+                <main className="flex-grow">
+                  <Hero onOpenResume={() => setIsResumeOpen(true)} />
+                  <About />
+                  <Skills />
+                  <Experience />
+                  <Projects />
+                  {/* <Ecommerce /> */}
+                  <Education />
+                  <Contact />
+                </main>
 
-          {/* Main Portfolio Sections */}
-          <main className="flex-grow">
-            <Hero onOpenResume={() => setIsResumeOpen(true)} />
-            <About />
-            <Skills />
-            <Experience />
-            <Projects />
-            <Education />
-            <Contact />
-          </main>
+                <Footer onOpenResume={() => setIsResumeOpen(true)} />
 
-          {/* Footer */}
-          <Footer onOpenResume={() => setIsResumeOpen(true)} />
+                <ResumeModal
+                  isOpen={isResumeOpen}
+                  onClose={() => setIsResumeOpen(false)}
+                />
 
-          {/* Interactive Resume View & Download Modal */}
-          <ResumeModal
-            isOpen={isResumeOpen}
-            onClose={() => setIsResumeOpen(false)}
+                <ContactModal
+                  isOpen={isContactModalOpen}
+                  onClose={() => setIsContactModalOpen(false)}
+                />
+              </motion.div>
+            }
           />
 
-          {/* Contact Inquiry Modal */}
-          <ContactModal
-            isOpen={isContactModalOpen}
-            onClose={() => setIsContactModalOpen(false)}
-          />
-        </motion.div>
+          {/* Dedicated E-Commerce Platform Routes */}
+          <Route path="/store/*" element={<StoreRoutes />} />
+          <Route path="/store" element={<StoreRoutes />} />
+          <Route path="/ecommerce/*" element={<StoreRoutes />} />
+          <Route path="/ecommerce" element={<StoreRoutes />} />
+          <Route path="/product/*" element={<StoreRoutes />} />
+          <Route path="/product" element={<StoreRoutes />} />
+          <Route path="/products/*" element={<StoreRoutes />} />
+          <Route path="/products" element={<StoreRoutes />} />
+        </Routes>
       )}
     </div>
   );

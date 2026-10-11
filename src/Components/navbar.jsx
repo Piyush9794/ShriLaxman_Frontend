@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, FileDown, Sparkles } from "lucide-react";
+import { Menu, X, ArrowUpRight, FileDown, Sparkles, ShoppingBag } from "lucide-react";
 import { personalInfo, navigationLinks } from "../data/portfolioData";
 import ThemeToggle from "./ThemeToggle";
 
@@ -8,6 +9,7 @@ export default function Navbar({ onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,9 +48,13 @@ export default function Navbar({ onOpenResume }) {
     };
   }, [mobileMenuOpen]);
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e, href, name) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    if (name === "Store" || href === "#ecommerce") {
+      navigate("/ecommerce");
+      return;
+    }
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
@@ -107,7 +113,7 @@ export default function Navbar({ onOpenResume }) {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={(e) => handleNavClick(e, link.href, link.name)}
                   className={`relative px-3.5 py-1.5 text-xs font-medium tracking-wide transition-all rounded-full ${isActive
                     ? "text-slate-900 dark:text-white font-semibold"
                     : "text-slate-600 hover:text-slate-950 dark:text-zinc-400 dark:hover:text-white"
@@ -209,7 +215,7 @@ export default function Navbar({ onOpenResume }) {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={(e) => handleNavClick(e, link.href, link.name)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05, duration: 0.2 }}
