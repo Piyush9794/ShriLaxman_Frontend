@@ -184,6 +184,37 @@ export const skillCategories = [
 
 export const projectsData = [
   {
+    id: "Tap Review ai",
+    link: "https://tap-review-ai-clent.vercel.app/",
+    title: "TapReview AI",
+    subtitle:
+      "An AI-powered NFC & QR Google Review SaaS platform turning happy customers into 5-star reviews in 1 tap.",
+    category: "Full Stack / AI SaaS / DevOps",
+    description:
+      "Architected and deployed an end-to-end multi-tenant MERN SaaS platform integrating physical NFC hardware and dynamic QR codes with Google Gemini 1.5 Flash AI. Built a responsive customer review flow with instant AI draft synthesis and 1-click copy to Google Reviews under strict anti-gating compliance. Developed secure REST APIs with Node.js, Express, MongoDB, JWT-based RBAC, real-time tap telemetry, and hosted the live application on Vercel and cloud containers.",
+    stack: [
+      "React.js",
+      "TypeScript",
+      "Vite",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Google Gemini AI",
+      "NFC (NTAG213/215)",
+      "REST APIs",
+      "Tailwind CSS",
+    ],
+    metrics: [
+      "1-Tap NFC & Dynamic QR",
+      "Gemini AI Review Engine",
+      "Multi-Tenant RBAC Architecture",
+    ],
+    colorTheme: "from-cyan-500/20 via-blue-500/10 to-transparent",
+    borderGlow: "group-hover:border-cyan-500/40",
+    gradientText: "from-cyan-400 to-blue-500",
+  },
+
+  {
     id: "unitynivo",
     link: "https://unitynivo.com/", // ← URL add kiya
     title: "UnityNivo",
