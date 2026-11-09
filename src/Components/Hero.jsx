@@ -5,6 +5,7 @@ import {
   Mail,
   Phone,
   Sparkles,
+  MessageCircle,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { personalInfo } from "../data/portfolioData";
@@ -135,24 +136,24 @@ export default function Hero({ onOpenResume }) {
             />
           </motion.p>
 
-          {/* Massive Editorial Hero Heading */}
+          {/* Main Homepage H1 for Technical SEO */}
           <motion.h1
             variants={itemVariants}
-            className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-slate-900 dark:text-white leading-[1.05] sm:leading-[1.05] mb-6"
+            className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-6"
           >
-            Software &{" "}
+            Hire Piyush Vishwakarma –{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-sky-500 to-indigo-600 dark:from-cyan-300 dark:via-sky-200 dark:to-indigo-300">
-              Front-End
+              Freelance Full Stack
             </span>{" "}
-            Developer
+            MERN Developer
           </motion.h1>
 
-          {/* Concise Professional Description */}
+          {/* Concise Professional Description with SEO Keywords */}
           <motion.p
             variants={itemVariants}
             className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-zinc-300/90 max-w-3xl font-normal leading-relaxed mb-8"
           >
-            Passionate about building responsive, high-performance, and visually captivating web applications. Specialized in <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">React.js</span>, <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">Next.js</span>, <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">TypeScript</span>, and full-stack <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">MERN</span> architectures.
+            Freelance Full Stack MERN Developer specializing in <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">React.js</span>, <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">Next.js</span>, <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">Node.js</span>, <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">Express.js</span>, and <span className="text-slate-900 dark:text-white font-semibold dark:font-medium">MongoDB</span>. Building responsive, high-performance web applications, REST APIs, and custom website solutions for clients worldwide.
           </motion.p>
 
           {/* Technology Badges Pills with floating animation */}
@@ -183,7 +184,7 @@ export default function Hero({ onOpenResume }) {
           {/* CTA Buttons with spring physics */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 mb-12 w-full max-w-md sm:max-w-none"
+            className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 mb-12 w-full max-w-2xl"
           >
             {/* Hire Me CTA */}
             <motion.a
@@ -200,6 +201,19 @@ export default function Hero({ onOpenResume }) {
               <span>Hire Me</span>
             </motion.a>
 
+            {/* Direct WhatsApp CTA */}
+            <motion.a
+              href="https://wa.me/919794125123?text=Hi%20Piyush,%20I%20am%20interested%20in%20discussing%20a%20freelance%20project%20with%20you."
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>WhatsApp Chat</span>
+            </motion.a>
+
             {/* View Projects CTA */}
             <motion.a
               href="#projects"
@@ -209,9 +223,9 @@ export default function Hero({ onOpenResume }) {
                 e.preventDefault();
                 document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-slate-100 dark:bg-white/[0.05] dark:hover:bg-white/[0.1] border border-slate-300 dark:border-white/10 text-slate-800 dark:text-white font-medium text-sm transition-all shadow-sm cursor-pointer"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 dark:bg-white/[0.05] dark:hover:bg-white/[0.1] border border-slate-300 dark:border-white/10 text-slate-800 dark:text-white font-medium text-sm transition-all shadow-sm cursor-pointer"
             >
-              <span> Projects</span>
+              <span>Projects</span>
               <ArrowDown className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
             </motion.a>
 
@@ -223,7 +237,7 @@ export default function Hero({ onOpenResume }) {
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.03] dark:hover:bg-white/[0.07] border border-slate-300 dark:border-white/10 text-slate-700 hover:text-slate-950 dark:text-zinc-300 dark:hover:text-white font-medium text-sm transition-all cursor-pointer shadow-sm"
             >
               <FileDown className="w-4 h-4 text-sky-600 dark:text-sky-400" />
-              <span>Download Resume</span>
+              <span>Download CV</span>
             </motion.button>
           </motion.div>
 
@@ -255,6 +269,19 @@ export default function Hero({ onOpenResume }) {
               >
                 <Phone className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 flex-shrink-0" />
                 <span>{personalInfo.phone}</span>
+              </motion.a>
+
+              <motion.a
+                href="https://wa.me/919794125123?text=Hi%20Piyush,%20I%20would%20like%20to%20discuss%20a%20freelance%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/15 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs text-emerald-800 dark:text-emerald-300 transition-colors shadow-sm"
+                title="Chat on WhatsApp"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                <span>WhatsApp</span>
               </motion.a>
 
               <motion.a

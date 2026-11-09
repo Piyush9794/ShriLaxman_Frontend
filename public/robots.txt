@@ -1,0 +1,29 @@
+# Robots.txt for https://shri-laxman-frontend.vercel.app/
+# Search Engine Crawling Directives for Piyush Vishwakarma Portfolio
+
+User-agent: *
+Allow: /
+Allow: /freelance-web-development
+Allow: /mern-stack-development
+Allow: /react-js-development
+Allow: /node-js-backend-development
+Allow: /next-js-development
+Allow: /website-development-lucknow
+Allow: /ecommerce
+
+# Disallow private, auth, cart, customer and administrative endpoints
+Disallow: /store/admin
+Disallow: /store/seller
+Disallow: /store/cart
+Disallow: /store/checkout
+Disallow: /store/customer
+Disallow: /ecommerce/admin
+Disallow: /ecommerce/seller
+Disallow: /ecommerce/cart
+Disallow: /ecommerce/checkout
+Disallow: /ecommerce/customer
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://shri-laxman-frontend.vercel.app/sitemap.xml
+

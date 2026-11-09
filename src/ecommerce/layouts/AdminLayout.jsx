@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import ThemeToggle from "../../Components/ThemeToggle";
+import SEO from "../../Components/SEO";
 
 export default function AdminLayout() {
   const { user, logout } = useAuth();
@@ -37,6 +38,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen flex bg-slate-50 dark:bg-[#06070a] text-slate-900 dark:text-zinc-100 antialiased">
+      <SEO title="Admin Dashboard | Private Portal" noindex={true} />
       {/* ── Mobile Sidebar Backdrop ── */}
       {sidebarOpen && (
         <div

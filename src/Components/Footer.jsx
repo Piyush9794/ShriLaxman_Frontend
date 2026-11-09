@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
-import { ArrowUp, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowUp, Mail, Phone, MapPin, ExternalLink, MessageCircle } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { personalInfo, navigationLinks } from "../data/portfolioData";
+import { servicesData } from "../data/servicesData";
 
 export default function Footer({ onOpenResume }) {
+  const navigate = useNavigate();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -18,6 +22,12 @@ export default function Footer({ onOpenResume }) {
         behavior: "smooth",
         block: "start",
       });
+    } else {
+      navigate(`/${href}`);
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 150);
     }
   };
 
@@ -64,7 +74,9 @@ export default function Footer({ onOpenResume }) {
                   stiffness: 300,
                 }}
                 src="/Lax.png"
-                alt="Dhanus"
+                alt="Piyush Vishwakarma - Freelance MERN Stack Developer"
+                width="240"
+                height="48"
                 className="
                   h-9 w-auto max-w-[170px]
                   object-contain
@@ -122,9 +134,8 @@ export default function Footer({ onOpenResume }) {
 
             <div
               className="
-                grid grid-cols-2 gap-x-4 gap-y-2
+                flex flex-col gap-y-2
                 text-sm
-                sm:gap-x-6
               "
             >
               {navigationLinks.map((link) => (
@@ -134,7 +145,7 @@ export default function Footer({ onOpenResume }) {
                   href={link.href}
                   onClick={(e) => handleNavigation(e, link.href)}
                   className="
-                    min-w-0 py-1
+                    min-w-0 py-0.5
                     font-medium
                     text-slate-600
                     transition-colors
@@ -151,7 +162,7 @@ export default function Footer({ onOpenResume }) {
                 whileHover={{ x: 4 }}
                 onClick={onOpenResume}
                 className="
-                  cursor-pointer py-1 text-left
+                  cursor-pointer py-0.5 text-left
                   font-medium
                   text-slate-600
                   transition-colors
@@ -163,6 +174,41 @@ export default function Footer({ onOpenResume }) {
                 Resume CV
               </motion.button>
             </div>
+          </div>
+
+          {/* Freelance Services Column - Internal SEO Linking */}
+          <div className="md:col-span-6 lg:col-span-3">
+            <span
+              className="
+                mb-4 block
+                text-xs font-mono uppercase tracking-widest
+                text-slate-500
+                dark:text-zinc-400
+              "
+            >
+              Services
+            </span>
+
+            <ul className="flex flex-col gap-y-2 text-xs sm:text-sm">
+              {servicesData.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    to={`/${s.slug}`}
+                    className="
+                      block py-0.5
+                      font-medium
+                      text-slate-600
+                      transition-colors
+                      hover:text-cyan-600
+                      dark:text-zinc-400
+                      dark:hover:text-cyan-300
+                    "
+                  >
+                    {s.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Location Map */}
@@ -268,6 +314,35 @@ export default function Footer({ onOpenResume }) {
                   aria-label="Email"
                 >
                   <Mail className="h-4 w-4" />
+                </motion.a>
+
+                {/* WhatsApp */}
+                <motion.a
+                  href="https://wa.me/919794125123?text=Hi%20Piyush,%20I%20would%20like%20to%20discuss%20a%20freelance%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{
+                    scale: 1.15,
+                    y: -3,
+                    rotate: 5,
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="
+                    rounded-xl border border-emerald-500/30
+                    bg-emerald-500/10 p-2.5
+                    text-emerald-700 shadow-sm
+                    transition-colors
+                    hover:bg-emerald-500/20 hover:text-emerald-800
+                    dark:border-emerald-500/30
+                    dark:bg-emerald-500/15
+                    dark:text-emerald-300
+                    dark:hover:bg-emerald-500/25
+                    dark:hover:text-emerald-200
+                  "
+                  title="WhatsApp"
+                  aria-label="WhatsApp"
+                >
+                  <MessageCircle className="h-4 w-4" />
                 </motion.a>
 
                 {/* Phone */}

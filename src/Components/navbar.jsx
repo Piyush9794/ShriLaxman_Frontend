@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, FileDown, Sparkles, ShoppingBag } from "lucide-react";
+import { Menu, X, ArrowUpRight, FileDown, Sparkles } from "lucide-react";
 import { personalInfo, navigationLinks } from "../data/portfolioData";
 import ThemeToggle from "./ThemeToggle";
 
@@ -58,6 +58,12 @@ export default function Navbar({ onOpenResume }) {
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(`/${href}`);
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 150);
     }
   };
 
@@ -81,7 +87,9 @@ export default function Navbar({ onOpenResume }) {
           >
             <img
               src="/Lax.png"
-              alt="Dhanus Logo"
+              alt="Piyush Vishwakarma - Freelance MERN Stack Developer"
+              width="240"
+              height="70"
               className="
                 block
                 h-9

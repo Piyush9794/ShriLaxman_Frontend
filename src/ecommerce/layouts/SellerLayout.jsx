@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import ThemeToggle from "../../Components/ThemeToggle";
+import SEO from "../../Components/SEO";
 
 export default function SellerLayout() {
   const { user, logout, loginAsDemo } = useAuth();
@@ -38,6 +39,7 @@ export default function SellerLayout() {
 
   return (
     <div className="min-h-screen flex bg-slate-50 dark:bg-[#07080d] text-slate-900 dark:text-zinc-100 antialiased">
+      <SEO title="Seller Portal | Private Dashboard" noindex={true} />
       {/* ── Mobile Sidebar Backdrop ── */}
       {sidebarOpen && (
         <div
