@@ -74,10 +74,10 @@ export default function Contact() {
     // Message
     if (!formData.message.trim()) {
       errs.message = "Message cannot be empty";
-    } else if (formData.message.trim().length < 10) {
-      errs.message = "Message must be at least 10 characters";
+      // } else if (formData.message.trim().length < 10) {
+      //   errs.message = "Message must be at least 10 characters";
+      // }
     }
-
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -549,7 +549,7 @@ export default function Contact() {
                       </label>
                       <textarea
                         rows={4}
-                        placeholder="Tell me about your project scope, timeline, or requirements..."
+                        placeholder="about your project scope, timeline, or requirements..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-white dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 text-sm focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-400/80 transition-colors resize-none shadow-sm"

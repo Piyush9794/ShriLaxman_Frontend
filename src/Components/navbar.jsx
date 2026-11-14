@@ -48,24 +48,24 @@ export default function Navbar({ onOpenResume }) {
     };
   }, [mobileMenuOpen]);
 
-  const handleNavClick = (e, href, name) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    if (name === "Store" || href === "#ecommerce") {
-      navigate("/ecommerce");
-      return;
-    }
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    } else {
-      navigate(`/${href}`);
-      setTimeout(() => {
-        const el = document.querySelector(href);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 150);
-    }
-  };
+  // const handleNavClick = (e, href, name) => {
+  //   e.preventDefault();
+  //   setMobileMenuOpen(false);
+  //   if (name === "Store" || href === "#ecommerce") {
+  //     navigate("/ecommerce");
+  //     return;
+  //   }
+  //   const target = document.querySelector(href);
+  //   if (target) {
+  //     target.scrollIntoView({ behavior: "smooth" });
+  //   } else {
+  //     navigate(`/${href}`);
+  //     setTimeout(() => {
+  //       const el = document.querySelector(href);
+  //       if (el) el.scrollIntoView({ behavior: "smooth" });
+  //     }, 150);
+  //   }
+  // };
 
   return (
     <>
